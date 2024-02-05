@@ -38,7 +38,7 @@ class PersonFollower(Node):
         #
         # your code for computing vx, wz
         #
-        
+        print("prueba")
         vx = 0.2
         wz = 0.2
         #
