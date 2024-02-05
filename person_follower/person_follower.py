@@ -38,7 +38,8 @@ class PersonFollower(Node):
         #
         # your code for computing vx, wz
         #
-        print("prueba")
+        prueba=1
+        print(prueba)
         vx = 0.2
         wz = 0.2
         #
@@ -53,7 +54,6 @@ def main(args=None):
     rclpy.spin(person_follower)
     person_follower.destroy_node()
     rclpy.shutdown()
-    print("prueba")
-
+  
 if __name__ == '__main__':
     main()
