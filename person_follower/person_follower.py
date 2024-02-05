@@ -53,7 +53,7 @@ def main(args=None):
     rclpy.spin(person_follower)
     person_follower.destroy_node()
     rclpy.shutdown()
-
+    print("prueba")
 
 if __name__ == '__main__':
     main()
