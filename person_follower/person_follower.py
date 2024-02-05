@@ -39,8 +39,8 @@ class PersonFollower(Node):
         # your code for computing vx, wz
         #
         
-        vx = 0.3
-        wz = 0.3
+        vx = 0.1
+        wz = 0.1
         #
         output_msg = Twist()
         output_msg.linear.x = vx
