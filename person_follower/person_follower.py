@@ -38,8 +38,9 @@ class PersonFollower(Node):
         #
         # your code for computing vx, wz
         #
-        prueba=1
-        print(prueba)
+        
+        detecccionFrontal=ranges[170:190]
+        print(detecccionFrontal)
         vx = 0.2
         wz = 0.2
         #
