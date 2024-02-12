@@ -47,8 +47,8 @@ class PersonFollower(Node):
             wz = 0.2 # velocidad angular
             print(detecccionFrontal)
         else:
-            vx = 0.2 #velocidad lineal    
-            wz = 0.2 # velocidad angular
+            vx = 0.0 #velocidad lineal    
+            wz = 0.0 # velocidad angular
         #
         output_msg = Twist()
         output_msg.linear.x = vx
