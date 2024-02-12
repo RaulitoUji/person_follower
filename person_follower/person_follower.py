@@ -45,7 +45,7 @@ class PersonFollower(Node):
         print(deteccionFrontal)
         if deteccionFrontal > distanciaMinima and deteccionFrontal < distanciaMaxima:
             vx = 0.2 #velocidad lineal    
-            wz = 0.2 # velocidad angular
+            #wz = 0.2 # velocidad angular
             print(deteccionFrontal)
         else:
             vx = 0.0 #velocidad lineal    
