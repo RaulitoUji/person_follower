@@ -39,10 +39,16 @@ class PersonFollower(Node):
         # your code for computing vx, wz
         #
         
-        detecccionFrontal=ranges[170:190]
-        print(detecccionFrontal)
-        vx = 0.2
-        wz = 0.2
+        detecccionFrontal=min(ranges[170:190])# si detecta nos da la distancia de detecciòn
+        distanciaMinima=0.7
+        distanciaMaxima=2.0
+        if deteccionFrontal > distanciaMinima and deteccionFrontal < distanciaMaxima:
+            vx = 0.2 #velocidad lineal    
+            wz = 0.2 # velocidad angular
+            print(detecccionFrontal)
+        else:
+            vx = 0.2 #velocidad lineal    
+            wz = 0.2 # velocidad angular
         #
         output_msg = Twist()
         output_msg.linear.x = vx
