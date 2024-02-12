@@ -39,7 +39,7 @@ class PersonFollower(Node):
         # your code for computing vx, wz
         #
         
-        detecccionFrontal=min(ranges[170:190])# si detecta nos da la distancia de detecciòn
+        deteccionFrontal=min(ranges[170:190])# si detecta nos da la distancia de detecciòn
         distanciaMinima=0.7
         distanciaMaxima=2.0
         if deteccionFrontal > distanciaMinima and deteccionFrontal < distanciaMaxima:
