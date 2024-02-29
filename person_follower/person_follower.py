@@ -39,17 +39,67 @@ class PersonFollower(Node):
         # your code for computing vx, wz
         #
         
-        deteccionFrontal=min(ranges[170:190])# si detecta nos da la distancia de detecciòn
-        distanciaMinima=0.7
-        distanciaMaxima=2.0
-        print(deteccionFrontal)
-        if deteccionFrontal > distanciaMinima and deteccionFrontal < distanciaMaxima:
-            vx = 0.2 #velocidad lineal    
-            #wz = 0.2 # velocidad angular
-            print(deteccionFrontal)
+        deteccionFrontal=min(ranges[175:185])# si detecta nos da la distancia de detecciòn
+        deteccionIzq=min(ranges[186:270])
+        deteccionDer=min(ranges[120:175])
+        deteccionAmuEst=min(ranges[0:119])
+        deteccionAmuBab=min(ranges[271:359])
+        deteccionIniStart=min(ranges[170:190])
+        distanciaIniStart=1
+        distanciaMinimaIzq=0.1
+        distanciaMinimaDer=0.2
+        distanciaMinimaAtr=0.2
+        distanciaMaximaAtr=1 #1.2
+        distanciaMinimaFrontal=0.2
+        distanciaMaxima=1.7
+        #print('izquierdo',deteccionIzq)
+        #print('frontal',deteccionFrontal)
+        #print(angle_increment)
+        if  distanciaIniStart >= deteccionIniStart:
+            flag = True
         else:
             vx = 0.0 #velocidad lineal    
+            wz = 0.0
+
+        #if distanciaIniStop >= deteccionIniStop:
+         #   flag = False
+          #  vx = 0.0 #velocidad lineal    
+           # wz = 0.0
+        #print(flag)
+        #print(distanciaIniStart)
+       
+        if flag == True:
+           
+          if deteccionIzq > distanciaMinimaIzq and deteccionIzq < distanciaMaxima:
+            vx = 0.18 #velocidad lineal    
+            wz = -0.3 # velocidad angular
+            #print('izquierdo',deteccionIzq)
+
+       
+          elif deteccionFrontal > distanciaMinimaFrontal and deteccionFrontal < distanciaMaxima:
+            vx = 0.18 #velocidad lineal    
             wz = 0.0 # velocidad angular
+            #print('frontal',deteccionFrontal)
+           
+          elif deteccionDer > distanciaMinimaDer and deteccionDer < distanciaMaxima:
+            vx = 0.18 #velocidad lineal    
+            wz = 0.15 # velocidad angular
+           # print('derecha',deteccionDer)
+          elif deteccionAmuEst > distanciaMinimaAtr and deteccionAmuEst < distanciaMaximaAtr:
+            vx = -0.2 #velocidad lineal    
+            wz =  0.2 # velocidad angular
+            #print('atras',deteccionAmuEst)
+          elif deteccionAmuBab > distanciaMinimaAtr and deteccionAmuBab < distanciaMaximaAtr:
+            vx = -0.2 #velocidad lineal    
+            wz =  0.0 # velocidad angular
+            #print('atras',deteccionAmuBab)
+           
+          else:
+            vx = 0.0 #velocidad lineal    
+            wz = 0.0 # velocidad angular
+           
+       
+        #
         #
         output_msg = Twist()
         output_msg.linear.x = vx
