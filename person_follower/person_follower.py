@@ -31,6 +31,7 @@ class PersonFollower(Node):
         self.subscription  # prevent unused variable warning
 
     def listener_callback(self, input_msg):
+        global flag
         angle_min = input_msg.angle_min
         angle_max = input_msg.angle_max
         angle_increment = input_msg.angle_increment
