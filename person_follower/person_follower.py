@@ -17,7 +17,7 @@ from rclpy.node import Node
 
 from sensor_msgs.msg import LaserScan
 from geometry_msgs.msg import Twist
-flag = False 
+flag = False
 class PersonFollower(Node):
 
     def __init__(self):
@@ -39,67 +39,49 @@ class PersonFollower(Node):
         #
         # your code for computing vx, wz
         #
-        
-        deteccionFrontal=min(ranges[175:185])# si detecta nos da la distancia de detecciòn
-        deteccionIzq=min(ranges[186:270])
-        deteccionDer=min(ranges[120:175])
-        deteccionAmuEst=min(ranges[0:119])
-        deteccionAmuBab=min(ranges[271:359])
+        deteccionFrontal=min(ranges[170:185])# si detecta nos da la distancia de detecciòn
+        deteccionIzq=min(ranges[191:270])
+        deteccionDer=min(ranges[90:169])
         deteccionIniStart=min(ranges[170:190])
         distanciaIniStart=1
-        distanciaMinimaIzq=0.1
-        distanciaMinimaDer=0.2
+        distanciaMinimaIzq=0.2#0.1
+        distanciaMinimaDer=0.3#0.2
         distanciaMinimaAtr=0.2
         distanciaMaximaAtr=1 #1.2
-        distanciaMinimaFrontal=0.2
-        distanciaMaxima=1.7
-        #print('izquierdo',deteccionIzq)
-        #print('frontal',deteccionFrontal)
-        #print(angle_increment)
+        distanciaMinimaFrontal=0.4#0.3
+        distanciaMaxima=1.2
+        distanciaMaximaDer=0.8
         if  distanciaIniStart >= deteccionIniStart:
             flag = True
         else:
             vx = 0.0 #velocidad lineal    
             wz = 0.0
 
-        #if distanciaIniStop >= deteccionIniStop:
-         #   flag = False
-          #  vx = 0.0 #velocidad lineal    
-           # wz = 0.0
-        #print(flag)
-        #print(distanciaIniStart)
-       
         if flag == True:
            
-          if deteccionIzq > distanciaMinimaIzq and deteccionIzq < distanciaMaxima:
-            vx = 0.18 #velocidad lineal    
-            wz = -0.3 # velocidad angular
-            #print('izquierdo',deteccionIzq)
-
-       
-          elif deteccionFrontal > distanciaMinimaFrontal and deteccionFrontal < distanciaMaxima:
-            vx = 0.18 #velocidad lineal    
+          if deteccionFrontal > distanciaMinimaFrontal and deteccionFrontal < distanciaMaxima:
+            vx = 0.5 #velocidad lineal    
             wz = 0.0 # velocidad angular
-            #print('frontal',deteccionFrontal)
-           
-          elif deteccionDer > distanciaMinimaDer and deteccionDer < distanciaMaxima:
-            vx = 0.18 #velocidad lineal    
-            wz = 0.15 # velocidad angular
-           # print('derecha',deteccionDer)
-          elif deteccionAmuEst > distanciaMinimaAtr and deteccionAmuEst < distanciaMaximaAtr:
-            vx = -0.2 #velocidad lineal    
-            wz =  0.2 # velocidad angular
-            #print('atras',deteccionAmuEst)
-          elif deteccionAmuBab > distanciaMinimaAtr and deteccionAmuBab < distanciaMaximaAtr:
-            vx = -0.2 #velocidad lineal    
-            wz =  0.0 # velocidad angular
-            #print('atras',deteccionAmuBab)
+            print('frontal',deteccionFrontal)
+
+         
+         
+          elif deteccionIzq > distanciaMinimaIzq and deteccionIzq < distanciaMaxima:
+            vx = 0.5 #velocidad lineal    
+            wz = 0.8 # velocidad angular
+            print('izquierdo',deteccionIzq)
+
+          elif deteccionDer > distanciaMinimaDer and deteccionDer < distanciaMaximaDer:
+            vx = 0.3 #velocidad lineal    
+            wz = -0.8 # velocidad angular
+            print('derecha',deteccionDer)
            
           else:
             vx = 0.0 #velocidad lineal    
             wz = 0.0 # velocidad angular
            
        
+        #
         #
         #
         output_msg = Twist()
@@ -113,6 +95,7 @@ def main(args=None):
     rclpy.spin(person_follower)
     person_follower.destroy_node()
     rclpy.shutdown()
-  
+
+
 if __name__ == '__main__':
     main()
